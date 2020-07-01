@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonChart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#0F000000"
