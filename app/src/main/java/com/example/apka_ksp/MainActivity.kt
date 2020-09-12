@@ -51,6 +51,7 @@ class MainActivity : Activity() {
     }
 
     private fun onEventDisconnect() {
+        isNotCreatedRoom = true
         runOnUiThread {
             Toast.makeText(this, "Disconnected", Toast.LENGTH_SHORT).show()
             buttonConnect.text = "Connect"
@@ -59,9 +60,13 @@ class MainActivity : Activity() {
         SocketIO.instance.listOfValues.clear()
     }
 
+    private var isNotCreatedRoom = true
     private fun onEventConnect() {
-        //TODO chyba tu trzeba wrzucić create room ale dodało mi kilka pokoi na raz :/
-        // socket?.emit("createRoom", "roomName")
+        if (isNotCreatedRoom) {
+            socket?.emit("createRoom", "roomName")
+            isNotCreatedRoom = false
+        }
+
         runOnUiThread {
             Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
             buttonConnect.text = "Disconnect"
